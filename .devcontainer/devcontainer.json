@@ -3,15 +3,23 @@
 {
   "name": "message-workspace",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  "image": "mcr.microsoft.com/devcontainers/base:debian",
+  "image": "mcr.microsoft.com/devcontainers/base:bullseye",
   "features": {
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
-    "ghcr.io/devcontainers/features/node:1": {}
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/go:1": {
+      "version": "1.25.4"
+    }
   },
   "mounts": [
     "type=bind,source=${localEnv:HOME}/.ssh,target=/root/.ssh" // this need to be kept due to git-ssh
   ],
   "remoteUser": "root", // More info: https://aka.ms/dev-containers-non-root.
+  "remoteEnv": {
+    "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
+  },
   "runArgs": ["--name=message-workspace"],
   "customizations": {
     "vscode": {

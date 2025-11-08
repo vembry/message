@@ -1,0 +1,39 @@
+openapi: "3.0.3"
+info:
+  title: "Sample API"
+  version: "1.0.0"
+servers:
+  - url: http://localhost/
+paths:
+  "/message":
+    get:
+      summary: "Get a message"
+      description: "Retrieves a simple message"
+      responses:
+        "200":
+          description: "Successful operation"
+          content:
+            application/json:
+              schema:
+                type: string
+                example: "Hello World!!"
+  "/": 
+    get:
+      summary: "test endpoint"
+      responses:
+        "200":
+          description: "success"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Test'
+
+components:
+  schemas:
+    Test:
+      type: object
+      properties:
+        status:
+          type: boolean
+        message:
+          type: string
