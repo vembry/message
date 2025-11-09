@@ -19,13 +19,24 @@ services:
         - action: rebuild
           path: ./api
 
-  swagger:
+  web-swagger:
     image: message-swagger:latest
     pull_policy: rebuild
     build: 
-      context: ./swagger
+      context: ./web-swagger
       dockerfile: Dockerfile
     develop:
       watch:
         - action: rebuild
-          path: ./swagger
+          path: ./web-swagger
+
+  web:
+    image: message-web:latest
+    pull_policy: rebuild
+    build: 
+      context: ./web
+      dockerfile: Dockerfile
+    develop:
+      watch:
+        - action: rebuild
+          path: ./web
